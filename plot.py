@@ -9,6 +9,10 @@ def fun(X, Y):
     c = (X - 2.5) ** 2 + (Y - 2.5)**2 - (5./8.)**2
     return np.maximum(C, -c)
 
+def fun2(X,Y):
+    #(x2+y2−1)3−x2y3=0   
+    return (X**2 + Y**2 - 1)**3 - X**2 * Y**3
+
 def read_obj(file_name):
     vertices = []
     edges = []
@@ -33,13 +37,13 @@ def main():
     if args.file and os.path.isfile(args.file):
         obj = read_obj(args.file)
 
-    x = np.linspace(0, 5, 100)
-    y = np.linspace(0, 5, 100)
+    x = np.linspace(-5, 5, 100)
+    y = np.linspace(-5, 5, 100)
 
-    xticks = np.linspace(0, 5, 5)
-    yticks = np.linspace(0, 5, 5)
+    xticks = np.linspace(-5, 5, 5)
+    yticks = np.linspace(-5, 5, 5)
     X, Y = np.meshgrid(x, y)
-    Z = fun(X, Y)
+    Z = fun2(X, Y)
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
