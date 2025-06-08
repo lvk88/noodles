@@ -113,6 +113,21 @@ impl SizedGrid {
         }
     }
 
+    pub fn create_sized_grid(origin: [f32; 2], sizes: [f32; 2], n_cells: [u32; 2]) -> SizedGrid {
+        let mut delta = [0., 0.];
+
+        delta[0] = sizes[0] / (n_cells[0] as f32);
+        delta[1] = sizes[1] / (n_cells[1] as f32);
+
+        let grid = Grid::new_from_size(n_cells[0], n_cells[1]);
+
+        SizedGrid {
+            grid,
+            origin,
+            delta,
+        }
+    }
+
     pub fn point(&self, i: u32, j: u32) -> [f32; 2] {
         let x = self.origin[0] + i as f32 * self.delta[0];
         let y = self.origin[1] + j as f32 * self.delta[1];
@@ -128,29 +143,30 @@ impl SizedGrid {
     }
 }
 
-#[test]
-fn test_grid_ravel() {
-    let g = Grid::new_from_size(2, 3);
-
-    assert_eq!(g.ravel(1, 1), 3);
-}
-
-#[test]
-fn test_cell_nodes() {
-    let g = Grid::new_from_size(2, 3);
-
-    let cell_nodes = g.cell_nodes(1, 1);
-    assert_eq!(cell_nodes[0], 4);
-    assert_eq!(cell_nodes[1], 5);
-    assert_eq!(cell_nodes[2], 7);
-    assert_eq!(cell_nodes[3], 8);
-}
-
 #[cfg(test)]
 mod tests {
 
     use super::*;
     use assert_float_eq::assert_f32_near;
+
+    #[test]
+    fn test_grid_ravel() {
+        let g = Grid::new_from_size(2, 3);
+
+        assert_eq!(g.ravel(1, 1), 3);
+    }
+
+    #[test]
+    fn test_cell_nodes() {
+        let g = Grid::new_from_size(2, 3);
+
+        let cell_nodes = g.cell_nodes(1, 1);
+        assert_eq!(cell_nodes[0], 4);
+        assert_eq!(cell_nodes[1], 5);
+        assert_eq!(cell_nodes[2], 7);
+        assert_eq!(cell_nodes[3], 8);
+    }
+
     #[test]
     fn test_cell_node_indices() {
         let g = Grid::new_from_size(2, 3);

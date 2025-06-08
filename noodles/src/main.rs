@@ -22,11 +22,14 @@ fn main() {
         f32::max(C, -c)
     }
 
-    let sized_grid = noodles::grid::SizedGrid::new(
-        [0.0, 0.0],
-        [5. / 4., 5. / 4.],
-        noodles::grid::Grid::new_from_size(4, 4),
-    );
+    //let sized_grid = noodles::grid::SizedGrid::new(
+    //    [0.0, 0.0],
+    //    [5. / 4., 5. / 4.],
+    //    noodles::grid::Grid::new_from_size(4, 4),
+    //);
+
+    let sized_grid =
+        noodles::grid::SizedGrid::create_sized_grid([0.0, 0.0], [5.0, 5.0], [1000, 1000]);
 
     let result = noodles::contouring::contour(&ring, sized_grid);
 

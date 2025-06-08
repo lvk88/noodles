@@ -21,8 +21,6 @@ const LOCAL_EDGE_TO_INTERNAL_POINT: [[u32; 4]; 16] = [
 
 use crate::grid::{EdgeDirection, SizedGrid};
 
-pub type ImplicitFunction = fn(x: f32, y: f32) -> f32;
-
 pub fn case<F>(sized_grid: &SizedGrid, i: u32, j: u32, func: &F) -> u32
 where
     F: Fn(f32, f32) -> f32,
@@ -187,7 +185,6 @@ where
 {
     // Create topological connectivities
     let segments = topo_segment(&f, &grid);
-    println!("{:?}", &segments);
 
     // Create internal points
     let internal_points = internal_points(&f, &grid);
@@ -206,7 +203,20 @@ where
     }
 
     for segment in segments {
-        let start_vertex = internal_point_to_vertex.get(&segment.0).unwrap();
+        let start_vertex = match internal_point_to_vertex.get(&segment.0) {
+            Some(value) => value,
+            None => {
+                let (i, j) = grid.grid().unravel(segment.0.0);
+                let case = case(&grid, i, j, &f);
+                panic!(
+                    "Start vertex malformed in {:?}, {:?}, {:?}",
+                    segment,
+                    (i, j),
+                    case
+                );
+            }
+        };
+
         let end_vertex = internal_point_to_vertex.get(&segment.1).unwrap();
         res.edges
             .push((*start_vertex as usize, *end_vertex as usize));
