@@ -1,7 +1,3 @@
-use noodles::contouring::case;
-
-use meval::Expr;
-
 fn main() {
     #[allow(non_snake_case)]
     fn ring(x: f32, y: f32) -> f32 {
