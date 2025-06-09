@@ -5,6 +5,8 @@ Based on the description in _Wenger, Rephael. Isosurfaces: geometry, topology, a
 
 ![alt text](img/heart.png)
 
+Live demo in wasm [here](https://noodles-249.pages.dev/)
+
 ## Run examples
 
 Segmenting a rust function
