@@ -4,10 +4,14 @@ import numpy as np
 
 def main():
     heart = "(x^2 + y^2 - 1.)^3 - x^2 * y^3"
-
-    origin = [-1.5, -1.5]
-    sizes = [3.0, 3.0]
+    origin = [-2.5, -2.5]
+    sizes = [5.0, 5.0]
     gridsize = [32, 32]
+
+    #quadrifolium = "(x^2 + y^2)^3 - (x^2 - y^2) ^2"
+    #origin = [-1.5, -1.5]
+    #sizes = [3.0, 3.0]
+    #gridsize = [64, 64]
 
     xticks = np.linspace(origin[0], origin[0] + sizes[0], gridsize[0] + 1)
     yticks = np.linspace(origin[1], origin[1] + sizes[1], gridsize[1] + 1)

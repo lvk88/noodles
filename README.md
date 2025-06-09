@@ -37,3 +37,7 @@ cd noodles-py
 maturin develop --release
 python main.py
 ```
+
+## Known issues
+
+It is not possible currently to segment a curve that touches the boundary cells in the background mesh. In this case, the algorithm will simply fail.
