@@ -19,7 +19,10 @@ const LOCAL_EDGE_TO_INTERNAL_POINT: [[u32; 4]; 16] = [
     [0, 0, 0, 0],
 ];
 
-use crate::grid::{EdgeDirection, SizedGrid};
+use crate::{
+    grid::{EdgeDirection, SizedGrid},
+    tessellation,
+};
 
 pub fn case<F>(sized_grid: &SizedGrid, i: u32, j: u32, func: &F) -> u32
 where
@@ -223,6 +226,20 @@ where
     }
 
     res
+}
+
+pub fn contour_formula(
+    formula: &str,
+    grid: SizedGrid,
+) -> Result<tessellation::Contour, meval::Error> {
+    let f64_func: meval::Expr = formula.parse()?;
+    let f64_func = f64_func.bind2("x", "y")?;
+
+    let f32_func = |x: f32, y: f32| f64_func(x as f64, y as f64) as f32;
+
+    let tessellation = contour(f32_func, grid);
+
+    Ok(tessellation)
 }
 
 #[cfg(test)]
