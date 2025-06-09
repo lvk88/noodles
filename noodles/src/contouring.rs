@@ -31,7 +31,7 @@ where
 
     let _vals = points.map(|point| func(point[0], point[1]));
 
-    let states = points.map(|point| func(point[0], point[1]) <= f32::EPSILON);
+    let states = points.map(|point| func(point[0], point[1]) < f32::EPSILON);
 
     let case = states.iter().enumerate().fold(0, |acc, (index, &state)| {
         if state {
