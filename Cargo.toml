@@ -1,4 +1,4 @@
 [workspace]
 resolver = "3"
 
-members = ["noodles", "noodles-py"]
+members = ["noodles", "noodles-py", "noodles-wasm"]

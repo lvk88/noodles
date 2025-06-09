@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "vite-plugin-wasm-pack": "^0.1.12"
+  }
+}
