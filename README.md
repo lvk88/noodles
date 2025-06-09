@@ -3,6 +3,8 @@
 
 Based on the description in _Wenger, Rephael. Isosurfaces: geometry, topology, and algorithms. CRC press, 2013._
 
+![alt text](img/heart.png)
+
 ## Run examples
 
 Segmenting a rust function

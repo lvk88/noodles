@@ -5,10 +5,17 @@ import numpy as np
 def main():
     heart = "(x^2 + y^2 - 1.)^3 - x^2 * y^3"
 
+    origin = [-1.5, -1.5]
+    sizes = [3.0, 3.0]
+    gridsize = [32, 32]
+
+    xticks = np.linspace(origin[0], origin[0] + sizes[0], gridsize[0] + 1)
+    yticks = np.linspace(origin[1], origin[1] + sizes[1], gridsize[1] + 1)
+
     grid = noodles_py.SizedGrid(
-        [-2.5, -2.5],
-        [5.0, 5.0],
-        [500, 500]
+        origin,
+        sizes,
+        gridsize
     )
 
     res = noodles_py.contour(heart, grid)
@@ -30,9 +37,20 @@ def main():
     for e in edges:
         start = points[e[0]]
         end = points[e[1]]
-        ax.plot([start[0], end[0]], [start[1], end[1]], 'k')
+        ax.plot([start[0], end[0]], [start[1], end[1]], 'ko-', markersize='3')
 
+    xlabels = ["" for x in xticks]
+    ylabels = ["" for x in xticks]
+    xlabels[0] = str(xticks[0])
+    xlabels[-1] = str(xticks[-1])
+
+    ylabels[0] = str(yticks[0])
+    ylabels[-1] = str(yticks[-1])
+
+    ax.set_xticks(xticks, xlabels)
+    ax.set_yticks(yticks, ylabels)
     ax.set_aspect('equal')
+    ax.grid()
     plt.show()
 
     return
