@@ -32,8 +32,6 @@ where
 
     let points = nodes.map(|(i, j)| sized_grid.point(i, j));
 
-    let _vals = points.map(|point| func(point[0], point[1]));
-
     let states = points.map(|point| func(point[0], point[1]) < f32::EPSILON);
 
     let case = states.iter().enumerate().fold(0, |acc, (index, &state)| {

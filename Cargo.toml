@@ -2,3 +2,7 @@
 resolver = "3"
 
 members = ["noodles", "noodles-py", "noodles-wasm"]
+
+#[profile.release]
+#opt-level = 2
+#debug = "line-tables-only"
