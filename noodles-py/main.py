@@ -44,7 +44,7 @@ def main():
         ax.plot([start[0], end[0]], [start[1], end[1]], 'ko-', markersize='3')
 
     xlabels = ["" for x in xticks]
-    ylabels = ["" for x in xticks]
+    ylabels = ["" for x in yticks]
     xlabels[0] = str(xticks[0])
     xlabels[-1] = str(xticks[-1])
 
